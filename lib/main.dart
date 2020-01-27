@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'question.dart';
-
+import 'question_card.dart';
 void main() => runApp(MaterialApp(home: MyHome()));
 
 class MyHome extends StatefulWidget {
@@ -9,56 +9,26 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+  int counter = 0;
   List<Question> questions = [
     Question(
-        text: 'Who is more likely to die from diarrhoea',
-        suspectOne: 1,
-        suspectTwo: 2,
-        correctID: 1),
+        text: 'Who is more likely to not wash dirty sink for days?',
+        suspectOne: 'assets/ayush.jpg',
+        suspectTwo: 'assets/yunik.png',
+        correctID: 'assets/yunik.png'),
     Question(
-        text: 'Who is more likely to not wash a dirty sink for a week',
-        suspectOne: 3,
-        suspectTwo: 4,
-        correctID: 3),
+        text: 'Who is more likely to throw up in their Uber?',
+        suspectOne: 'assets/prativa.jpg',
+        suspectTwo: 'assets/ronish.jpg',
+        correctID: 'assets/prativa.jpg'),
     Question(
-        text: 'Who is more likely to faint ',
-        suspectOne: 5,
-        suspectTwo: 6,
-        correctID: 4),
+        text: 'Who is more likely to hide brownies from their friends ',
+        suspectOne: 'assets/anip.jpg',
+        suspectTwo: 'assets/ashik.jpg',
+        correctID: 'assets/ashik.jpg'),
   ];
 
-  Widget QuestionTemplate(question) {
-    return Card(
-      margin: EdgeInsets.fromLTRB(16, 16, 16, 10),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ), 
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(width: 3.0, color: Colors.orange[400])
-          )
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text(
-                question.text,
-                style: TextStyle(
-                  fontFamily: 'Handlee',
-                  fontSize: 20.0
-                ),
-              ),
-              SizedBox(height: 6.0,),
-              
-            ],
-          ),
-        ),
-      ),   
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,14 +48,19 @@ class _MyHomeState extends State<MyHome> {
       ),
       floatingActionButton: FloatingActionButton(
         splashColor: Colors.orange[400],
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            counter < 2 ? counter += 1 : counter = 0;
+          });
+        },
         child: Text(
           'Next',
           style: TextStyle(
               fontFamily: 'Handlee',
               color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 15),
+              fontSize: 15,
+              ),
         ),
         backgroundColor: Colors.white,
       ),
@@ -93,9 +68,9 @@ class _MyHomeState extends State<MyHome> {
       body: Padding(
         padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
         child: Column(
-            children: questions.map((question) {
-          return QuestionTemplate(question);
-        }).toList()),
+          children: <Widget>[QuestionCard(question:questions[counter])
+],
+        ),
       ),
     );
   }

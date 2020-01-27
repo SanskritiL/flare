@@ -1,9 +1,9 @@
 class Question{
 
   String text;
-  int suspectOne;
-  int suspectTwo;
-  int correctID;
+  String suspectOne;
+  String suspectTwo;
+ String correctID;
 
  Question({this.text, this.suspectOne, this.suspectTwo, this.correctID});
 
