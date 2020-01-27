@@ -9,6 +9,7 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+  QuestionCard questionCard;
   int counter = 0;
   List<Question> questions = [
     Question(
@@ -50,7 +51,7 @@ class _MyHomeState extends State<MyHome> {
         splashColor: Colors.orange[400],
         onPressed: () {
           setState(() {
-            counter < 2 ? counter += 1 : counter = 0;
+            counter < 2 ? counter += 1 : counter = 0;            
           });
         },
         child: Text(
